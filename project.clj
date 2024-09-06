@@ -5,7 +5,10 @@
             :url          "https://opensource.org/licenses/MIT"
             :distribution :repo
             :comments     "Same-as all Wall-Brew projects"}
-  :dependencies [[org.clojure/clojure "1.12.0"]]
+  :scm {:name "git"
+        :url  "https://github.com/Wall-Brew-Co/bouncer"}
+  :dependencies [[org.clojure/clojure "1.12.0"]
+                 [metosin/spec-tools "0.10.7"]]
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2024.08.29"]
             [com.wallbrew/lein-sealog "1.6.0"]
             [lein-cljsbuild "1.1.8"]
