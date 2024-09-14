@@ -7,6 +7,7 @@
   (:require [leiningen.core.main :as main]
             [leiningen.sealog.api :as sealog]))
 
+
 (defn bouncer
   "Manage Leiningen plugins, the Wall Brew way."
   [project & args]
