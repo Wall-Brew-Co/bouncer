@@ -73,7 +73,7 @@ While rules may support additional data for configuration, each rule must suppor
 
 * `:comment` - A human readable string describing the rule's purpose or intent.
 * `:disabled` - A boolean indicating if the rule is disabled. If the key is not present, the rule is assumed to be enabled.
-* `:reason` - A human readable string describing why a particular rule has been disabled. If `:disbaled` is true, this value must be present.
+* `:reason` - A human readable string describing why a particular rule has been disabled. If `:disabled` is true, this value must be present.
 
 If bouncer successfully validates all rules, it will print information about the checks it has performed and exit with a 0 status code.
 
