@@ -15,8 +15,8 @@
             [mvxcvi/cljstyle "0.16.630"]
             [ns-sort "1.0.3"]]
   :pom-addition [:organization
-                  [:name "Wall Brew Co."]
-                  [:url "https://wallbrew.com"]]
+                 [:name "Wall Brew Co."]
+                 [:url "https://wallbrew.com"]]
   :profiles {:dev {:dependencies [[org.clojure/test.check "1.1.1"]]}}
   :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
                                     :username      :env/clojars_user

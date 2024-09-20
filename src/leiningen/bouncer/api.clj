@@ -17,6 +17,7 @@
       (main/info "Existing Bouncer configuration found.")
       (impl/configure! configuration))))
 
+
 (defn check
   "Check the project.clj file against Wall Brew standards."
   [project]
@@ -28,5 +29,5 @@
         (do (main/info "PASS: Project conforms to all rules.")
             (System/exit 0))
         (do
-          (main/info "FAIL: Project does not conform to one or more rules." )
+          (main/info "FAIL: Project does not conform to one or more rules.")
           (System/exit 1))))))

@@ -20,6 +20,7 @@
     (is (test-util/generatable? ::sut/reason))
     (is (test-util/generatable? ::sut/disabled))))
 
+
 (deftest valid-default-config-test
   (testing "The default config should be valid."
     (is (spoon.spec/test-valid? ::sut/config sut/default-config))))
