@@ -20,7 +20,7 @@
     <url>https://github.com/Wall-Brew-Co/bouncer</url>
     <connection>scm:git:git://github.com/Wall-Brew-Co/bouncer.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Wall-Brew-Co/bouncer.git</developerConnection>
-    <tag>6aa004c2e3161258066c6ccc2bbb0e74f0f0f053</tag>
+    <tag>2195d936c0e1fc9094982e568461e6c039e1c631</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>

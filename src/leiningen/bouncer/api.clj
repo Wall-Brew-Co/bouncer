@@ -3,14 +3,14 @@
 
    This namespace contains the public functions that are called by the leiningen"
   (:require [leiningen.bouncer.impl :as impl]
-            [leiningen.bouncer.rules.api :as rules]
-            [leiningen.bouncer.rules.license]
-            [leiningen.bouncer.rules.plugins]
+            [leiningen.bouncer.project-rules.api :as project-rules]
+            [leiningen.bouncer.project-rules.license]
+            [leiningen.bouncer.project-rules.plugins]
             [leiningen.core.main :as main]))
 
 
 (defn init
-  "Create a new configuration file if one does not exist.."
+  "Create a new configuration file if one does not exist."
   [_opts]
   (let [configuration (impl/load-config!)]
     (if (impl/bouncer-configured?)
@@ -22,8 +22,9 @@
   [project]
   (let [{:keys [project-rules]} (impl/load-config!)]
     (main/info "Checking project.clj against Wall Brew standards...")
-    (let [results (rules/check-all project project-rules)]
-      (if (every? true? (vals results))
+    (let [project-results (project-rules/check-all project project-rules)
+          results         (vals project-results)]
+      (if (every? true? results)
         (do (main/info "PASS: Project conforms to all rules.")
             (System/exit 0))
         (do

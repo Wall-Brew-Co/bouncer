@@ -18,6 +18,7 @@
   (main/info (format "WARN: Unknown rule: %s" rule-key)))
 
 (defn check-all
+  "Check all project.clj rules against the project."
   [project project-rules]
   (letfn [(run-rule [acc rule-key rule]
             (assoc acc rule-key (check project rule-key rule)))]

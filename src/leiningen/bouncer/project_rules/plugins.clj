@@ -1,5 +1,6 @@
 (ns leiningen.bouncer.project-rules.plugins
-  (:require [leiningen.bouncer.project-rules.api :as api]
+  (:require [clojure.string :as str]
+            [leiningen.bouncer.project-rules.api :as api]
             [leiningen.core.main :as main]))
 
   (defn plugin-installed?
@@ -39,7 +40,11 @@
           true)
 
         :else
-        (api/record-failure (str "One or plugins not installed: " (keys errors))))))
+        (let [missing-plugins (->> errors
+                                   keys
+                                   (map #(str "'" % "'"))
+                                   (str/join ", "))]
+         (api/record-failure (str "One or plugins not installed: " missing-plugins))))))
 
 
   (defmethod api/check :plugins
