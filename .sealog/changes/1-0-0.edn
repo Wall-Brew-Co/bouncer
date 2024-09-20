@@ -1,0 +1,12 @@
+{:version      {:major 1
+                :minor 0
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["Plugin [initialization](https://github.com/Wall-Brew-Co/bouncer?tab=readme-ov-file#initialize-bouncer) via: `lein bouncer init`"
+                             "[Project.clj Inspection](https://github.com/Wall-Brew-Co/bouncer?tab=readme-ov-file#check-a-project-with-bouncer) via: `lein bouncer check`"]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2024-09-20T15:50:31.629516835Z"}
