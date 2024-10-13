@@ -171,6 +171,9 @@ The first location found will be used, and the others will be ignored:
 Bouncer will create this file while executing `lein bouncer init` if no prior Bouncer configuration file is detected.
 The file will be created with the defaults outlined in this README.
 
+When reading configuration, Bouncer will merge the above configurations with the default configuration- preferring values set in the configuration file over the defaults.
+This allows for a project to override the default configuration with a project-specific configuration, without needing to duplicate the entire configuration.
+
 ## License
 
 Copyright © [Wall Brew Co](https://wallbrew.com/)
