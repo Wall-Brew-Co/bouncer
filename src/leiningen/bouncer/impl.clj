@@ -1,16 +1,18 @@
 (ns leiningen.bouncer.impl
-  (:require [leiningen.bouncer.impl.io :as io]
+  (:require [clojure.spec.alpha :as spec]
+            [leiningen.bouncer.impl.io :as io]
             [leiningen.bouncer.types.config :as config]
             [leiningen.core.main :as main]))
-
 
 
 ;; Configuration functions
 
 (defn bouncer-configured?
-  "Returns true if the bouncer configuration file exists."
-  []
-  (io/file-exists? config/config-file))
+  "Returns true if the sealog configuration exists either in project.clj or in a configuration file."
+  [project]
+  (or (:bouncer project)
+      (io/file-exists? config/config-file)
+      (io/file-exists? config/backup-config-file)))
 
 
 (defn configure!
@@ -20,10 +22,34 @@
   (io/write-edn-file! config/config-file config/default-config {:pretty-print-edn? true}))
 
 
+(defn select-config
+  "Select the configuration to use with the following precedence:
+    - The `:bouncer` key in project.clj
+    - The configuration file in .bouncer/config.edn
+    - The configuration file in .wallbrew/bouncer/config.edn
+    - The default configuration"
+  [project]
+  (let [project-config             (:bouncer project)
+        config-file-exists?        (io/file-exists? config/config-file)
+        backup-config-file-exists? (io/file-exists? config/backup-config-file)]
+    (cond
+      (map? project-config)      project-config
+      config-file-exists?        (io/read-edn-file! config/config-file ::config/config)
+      backup-config-file-exists? (io/read-edn-file! config/backup-config-file ::config/config)
+      :else                      (do (main/info "No configuration file found. Assuming default configuration.")
+                                     config/default-config))))
+
+
 (defn load-config!
-  "Load the configuration file."
-  []
-  (if (io/file-exists? config/config-file)
-    (io/read-edn-file! config/config-file ::config/config)
-    (do (main/info "No configuration file found. Assuming default configuration.")
-        config/default-config)))
+  "Load the configuration file with the following precedence:
+      - The `:bouncer` key in project.clj
+      - The configuration file in .bouncer/config.edn
+      - The configuration file in .wallbrew/bouncer/config.edn
+      - The default configuration
+     If the configuration is invalid, print a warning and exit."
+  [project]
+  (let [config (select-config project)]
+    (if (spec/valid? ::config/config config)
+      config
+      (do (main/warn (format "Invalid configuration file contents: %s" (spec/explain-str ::config/config config)))
+          (main/exit 1)))))

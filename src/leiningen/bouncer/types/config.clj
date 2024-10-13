@@ -8,6 +8,7 @@
   "The default name of the configuration file."
   ".bouncer/config.edn")
 
+
 (def ^:const backup-config-file
   "The secondary name of the configuration file."
   ".wallbrew/bouncer/config.edn")

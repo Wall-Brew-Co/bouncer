@@ -36,11 +36,11 @@ From the root of your project directory, you may invoke the following commands:
 * `check` - To validate Bouncer's rules against the current Leiningen project
 * `help` - To view the help text of Bouncer or any command
 
-Commands may accept several options, which can be configured by the command line arguments passed in or by a configuration file located at `.bouncer/config.edn`.
+Commands may accept several options,  which can be configured by the command line arguments passed in or in [project configuration](#configuration).
 In all cases, the options will follow this order of precedence:
 
 1. Arguments passed by command line
-2. Values stored in `.bouncer/config.edn`
+2. Values stored in configuration
 3. Default values in bouncer's implementation
 
 ### Initialize Bouncer
@@ -130,6 +130,20 @@ This list is not exclusive, and a project may define additional tools; however, 
 Individual plugin checks may set a `:disabled` key to opt-out on unrequired plugins.
 For example, [clj-xml](https://github.com/Wall-Brew-Co/clj-xml) would opt-out of the `lein-cljsbuild` plugin since it is only available for JVM-based Clojure.
 Like all higher-level rules, disabled plugins must also provide a `:reason`.
+
+## Configuration
+
+Many of Bouncer's commands may be modified at execution time with additional arguments.
+As of version `1.1.0`, Bouncer will inspect the following locations for configuration.
+The first location found will be used, and the others will be ignored:
+
+- The `:bouncer` key in the project's `project.clj` file
+- The `.bouncer/config.edn` file, relative to the project's root
+- The `.wallbrew/bouncer/config.edn` file, relative to the project's root
+- The default configuration that would be written by `lein bouncer init`
+
+Bouncer will create this file while executing `lein bouncer init` if no prior Bouncer configuration file is detected.
+The file will be created with the defaults outlined in this README.
 
 ## License
 

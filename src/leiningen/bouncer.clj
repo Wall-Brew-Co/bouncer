@@ -73,7 +73,7 @@
   (let [command (first args)
         options (rest args)]
     (case command
-      "init"    (bouncer/init options)
-      "check"   (bouncer/check project)
+      "init"    (bouncer/init project options)
+      "check"   (bouncer/check project options)
       "help"    (help options)
       (unknown-command command))))
