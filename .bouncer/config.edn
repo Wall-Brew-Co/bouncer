@@ -1,4 +1,6 @@
 {:comment       "The default configuration for Wall Brew projects."
+ :fixes         {:namespace-sorting {:disabled false
+                                     :reason   "Namespace sorting is required for Wall Brew projects."}}
  :project-rules {:license {:comment  "https://github.com/Wall-Brew-Co/open-source?tab=readme-ov-file#licensing"
                            :disabled false}
                  :plugins {:disabled          false
@@ -8,7 +10,7 @@
                                                {:comment        "https://github.com/Wall-Brew-Co/rebroadcast?tab=readme-ov-file#clj-kondo-configuration"
                                                 :plugin-name    "com.github.clj-kondo/lein-clj-kondo"
                                                 :plugin-version "2024.08.29"}
-                                               {:plugin-name    "lein-cljsbuild"
+                                               {:plugin-name    "lein-cljsbuild/lein-cljsbuild"
                                                 :plugin-version "1.1.8"
                                                 :disabled       true
                                                 :reason         "cljsbuild is only required for ClojureScript and cross-platform projects."}

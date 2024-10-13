@@ -6,7 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [1.1.0 - 2024-10-13](#110---2024-10-13)
 * [1.0.0 - 2024-09-20](#100---2024-09-20)
+
+## 1.1.0 - 2024-10-13
+
+* Added
+  * `fix` command to [fix issues with existing projects.](https://github.com/Wall-Brew-Co/bouncer#fix-a-project-with-bouncer)
+  * Support for loading configuration from `project.clj`.
+  * Support for loading configuration from `.wallbrew/bouncer/config.edn`.
 
 ## 1.0.0 - 2024-09-20
 
