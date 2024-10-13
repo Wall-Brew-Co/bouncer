@@ -1,4 +1,4 @@
-(defproject com.wallbrew/bouncer "1.0.0"
+(defproject com.wallbrew/bouncer "1.1.0"
   :description "A Leiningen plugin to manage Leiningen."
   :url "https://github.com/Wall-Brew-Co/bouncer"
   :license {:name         "MIT"
@@ -12,9 +12,7 @@
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2024.09.27"]
             [com.wallbrew/lein-sealog "1.7.0"]
             [com.wallbrew/bouncer "1.0.0"]
-            [lein-cljsbuild "1.1.8"]
-            [mvxcvi/cljstyle "0.16.630"]
-            [ns-sort "1.0.3"]]
+            [mvxcvi/cljstyle "0.16.630"]]
   :pom-addition [:organization
                  [:name "Wall Brew Co."]
                  [:url "https://wallbrew.com"]]

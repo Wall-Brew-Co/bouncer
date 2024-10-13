@@ -1,0 +1,13 @@
+{:version      {:major 1
+                :minor 1
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["`fix` command to [fix issues with existing projects.](https://github.com/Wall-Brew-Co/bouncer#fix-a-project-with-bouncer)"
+                             "Support for loading configuration from `project.clj`."
+                             "Support for loading configuration from `.wallbrew/bouncer/config.edn`."]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2024-10-13T19:40:42.691945613Z"}
