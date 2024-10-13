@@ -11,7 +11,7 @@
 (defn unknown-command
   "Formats an error message for an unknown command."
   [command]
-  (str "Unknown command: " command "\nAvailable commands: `init`, `check`, and `help`"))
+  (str "Unknown command: " command "\nAvailable commands: `init`, `check`, `fix`, and `help`"))
 
 
 (defn top-level-help
@@ -24,6 +24,7 @@
   (main/info "Available commands:")
   (main/info "  init    - Creates a default configuration file.")
   (main/info "  check   - Verify the project.clj file against Wall Brew standards.")
+  (main/info "  fix     - Automatically fix common issues and style violations.")
   (main/info "  help    - Display this help message.")
   (main/info "")
   (main/info "Run `lein bouncer help <command>` for more information on a specific command."))
@@ -51,6 +52,19 @@
   (main/info "  - Validates the OSS license.")
   (main/info "  - Verifies the plugins required to run Wall Brew CI."))
 
+(defn fix-help
+  "Display help text for the fix command"
+  []
+  (main/info "Usage: lein bouncer fix")
+  (main/info "")
+  (main/info "Automatically fix common issues and style violations.")
+  (main/info "Fixes can be disabled and modified in the configuration file.")
+  (main/info "Note: this command may not necessarily fix all issues reported by `check`.")
+  (main/info "  Parity with `check` is a goal, but not a current guarantee.")
+  (main/info "")
+  (main/info "Available Fixes:")
+  (main/info "  - Sort all namespace `:require` and `:import` blocks."))
+
 
 (defn help
   "Display help text for a specific command."
@@ -60,6 +74,7 @@
       nil        (top-level-help)
       "init"     (init-help)
       "check"    (check-help)
+      "fix"      (fix-help)
       "help"     (main/info "Run `lein bouncer help <command>` for more information on a specific command.")
       (main/info (unknown-command command)))))
 
@@ -73,7 +88,8 @@
   (let [command (first args)
         options (rest args)]
     (case command
-      "init"    (bouncer/init project options)
-      "check"   (bouncer/check project options)
-      "help"    (help options)
+      "init"  (bouncer/init project options)
+      "check" (bouncer/check project options)
+      "fix"   (bouncer/fix project options)
+      "help"  (help options)
       (unknown-command command))))

@@ -59,6 +59,14 @@
                        "If the rule is disabled, a reason must be recorded. "
                        "For example, \"Inherited Eclipse License from source of fork\"")}))
 
+(spec/def ::namespace-sorting
+  (st/spec
+   {:type        :map
+    :spec        ::rule
+    :description (str "Fixes the sorting of `:require` blocks in namespace declarations. "
+                      "If the rule is disabled, a reason must be recorded. "
+                      "For example, \"Stateful components must be imported in a predetermined order\"")}))
+
 
 (spec/def ::plugin-name
   (st/spec
@@ -118,10 +126,18 @@
      :description "The rules against project.clj that bouncer can enforce and their configuration."}))
 
 
+(spec/def ::fixes
+  (st/spec
+   {:type        :map
+    :spec        (spec/keys :opt-un [::comment
+                                     ::namespace-sorting])
+    :description "The rules against project.clj that bouncer can enforce and their configuration."}))
+
 (spec/def ::config
   (st/spec
     {:type        :map
      :spec        (spec/keys :opt-un [::comment
+                                      ::fixes
                                       ::project-rules])
      :description "The configuration for Bouncer."}))
 
@@ -129,6 +145,8 @@
 (def default-config
   "The default configuration for Bouncer."
   {:comment       "The default configuration for Wall Brew projects."
+   :fixes         {:namespace-sorting {:disabled false
+                                       :reason   "Namespace sorting is required for Wall Brew projects."}}
    :project-rules {:license {:comment  "https://github.com/Wall-Brew-Co/open-source?tab=readme-ov-file#licensing"
                              :disabled false}
                    :plugins {:disabled          false

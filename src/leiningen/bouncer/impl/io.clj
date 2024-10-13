@@ -1,10 +1,10 @@
 (ns leiningen.bouncer.impl.io
-
   "This namespace contains functions for reading and writing files."
   (:require [clojure.edn :as edn]
             [clojure.java.io :as io]
             [clojure.pprint :as pp]
             [clojure.spec.alpha :as spec]
+            [clojure.string :as str]
             [leiningen.core.main :as main]
             [spec-tools.core :as st]))
 
@@ -75,3 +75,22 @@
                          :errors   (spec/explain-data spec contents)}))))
     (throw (ex-info "Not matching file exists!"
                     {:filename filename}))))
+
+(defn list-files-under-path
+  "List all files under a given path."
+  [path]
+  (file-seq (io/file path)))
+
+(defn ->clojure-source-files
+  "Filter `files` for only .clj, .cljs, .cljc files."
+  [files]
+  (letfn [(clojure-source-file? [file]
+            (or (str/ends-with? (.getAbsolutePath file) ".clj")
+                (str/ends-with? (.getAbsolutePath file) ".cljs")
+                (str/ends-with? (.getAbsolutePath file) ".cljc")))]
+    (filter clojure-source-file? files)))
+
+(defn file->path
+  "Convert a file to a path."
+  [file]
+  (.getAbsolutePath file))
