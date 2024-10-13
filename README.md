@@ -173,6 +173,7 @@ The file will be created with the defaults outlined in this README.
 
 When reading configuration, Bouncer will merge the above configurations with the default configuration- preferring values set in the configuration file over the defaults.
 This allows for a project to override the default configuration with a project-specific configuration, without needing to duplicate the entire configuration.
+Additionally, this prevents the need to update the configuration as new rules are added to Bouncer.
 
 ## License
 

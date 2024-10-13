@@ -1,4 +1,4 @@
-(defproject com.wallbrew/bouncer "1.1.0"
+(defproject com.wallbrew/bouncer "1.1.1"
   :description "A Leiningen plugin to manage Leiningen."
   :url "https://github.com/Wall-Brew-Co/bouncer"
   :license {:name         "MIT"
