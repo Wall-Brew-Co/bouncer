@@ -39,6 +39,7 @@
       :else                      (do (main/info "No configuration file found. Assuming default configuration.")
                                      config/default-config))))
 
+
 (defn deep-merge
   "Recursively merge two maps."
   [m1 m2]
