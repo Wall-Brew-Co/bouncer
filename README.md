@@ -15,6 +15,10 @@ To automate the consistency checks, Bouncer is able to:
 * Inspect the [licensing information](https://github.com/Wall-Brew-Co/open-source?tab=readme-ov-file#licensing)
 * Inspect the Leiningen plugins used for our standard [CI/CD jobs](https://github.com/Wall-Brew-Co/rebroadcast/tree/master/sources/github-actions)
 
+### Naming
+
+Bouncers are security guards at bars that make sure all patrons are following the rules.
+
 ## Installation
 
 Bouncer is available as a leiningen plugin and can be downloaded from [clojars](https://clojars.org/com.wallbrew/bouncer).
@@ -34,6 +38,7 @@ From the root of your project directory, you may invoke the following commands:
 
 * `init` - To initialize Nouncer with a config file (if not present)
 * `check` - To validate Bouncer's rules against the current Leiningen project
+* `fix` - To automatically fix any issues that Bouncer can resolve
 * `help` - To view the help text of Bouncer or any command
 
 Commands may accept several options,  which can be configured by the command line arguments passed in or in [project configuration](#configuration).
@@ -130,6 +135,27 @@ This list is not exclusive, and a project may define additional tools; however, 
 Individual plugin checks may set a `:disabled` key to opt-out on unrequired plugins.
 For example, [clj-xml](https://github.com/Wall-Brew-Co/clj-xml) would opt-out of the `lein-cljsbuild` plugin since it is only available for JVM-based Clojure.
 Like all higher-level rules, disabled plugins must also provide a `:reason`.
+
+### Fix A Project With Bouncer
+
+Bouncer can automatically fix some issues that it detects.
+This is useful for projects that are not yet compliant with Wall Brew standards.
+Bouncer's configuration contains a collection of rules to run against a project.
+While rules may support additional data for configuration, each rule must support the following keys:
+
+* `:comment` - A human readable string describing the rule's purpose or intent.
+* `:disabled` - A boolean indicating if the rule is disabled. If the key is not present, the rule is assumed to be enabled.
+* `:reason` - A human readable string describing why a particular rule has been disabled. If `:disabled` is true, this value must be present.
+
+If bouncer successfully fixes the issues described by the rules, it will exit with a 0 status code.
+
+Bouncer currently validates the following rules:
+
+#### Namespace Sorting
+
+- Rule Path `[:fixes :namespace-sorting]`
+
+Ensures that the `:require` blocks in each namespace declaration are sorted alphabetically.
 
 ## Configuration
 
