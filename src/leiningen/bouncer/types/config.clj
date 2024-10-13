@@ -59,13 +59,14 @@
                        "If the rule is disabled, a reason must be recorded. "
                        "For example, \"Inherited Eclipse License from source of fork\"")}))
 
+
 (spec/def ::namespace-sorting
   (st/spec
-   {:type        :map
-    :spec        ::rule
-    :description (str "Fixes the sorting of `:require` blocks in namespace declarations. "
-                      "If the rule is disabled, a reason must be recorded. "
-                      "For example, \"Stateful components must be imported in a predetermined order\"")}))
+    {:type        :map
+     :spec        ::rule
+     :description (str "Fixes the sorting of `:require` blocks in namespace declarations. "
+                       "If the rule is disabled, a reason must be recorded. "
+                       "For example, \"Stateful components must be imported in a predetermined order\"")}))
 
 
 (spec/def ::plugin-name
@@ -128,10 +129,11 @@
 
 (spec/def ::fixes
   (st/spec
-   {:type        :map
-    :spec        (spec/keys :opt-un [::comment
-                                     ::namespace-sorting])
-    :description "The rules against project.clj that bouncer can enforce and their configuration."}))
+    {:type        :map
+     :spec        (spec/keys :opt-un [::comment
+                                      ::namespace-sorting])
+     :description "The rules against project.clj that bouncer can enforce and their configuration."}))
+
 
 (spec/def ::config
   (st/spec
@@ -153,10 +155,13 @@
                              :available-plugins [{:comment        "https://github.com/Wall-Brew-Co/rebroadcast?tab=readme-ov-file#sealog-configuration"
                                                   :plugin-name    "com.wallbrew/lein-sealog"
                                                   :plugin-version "1.6.0"}
+                                                 {:comment        "https://github.com/Wall-Brew-Co/rebroadcast?tab=readme-ov-file#bouncer-configuration"
+                                                  :plugin-name    "com.wallbrew/bouncer"
+                                                  :plugin-version "1.6.0"}
                                                  {:comment        "https://github.com/Wall-Brew-Co/rebroadcast?tab=readme-ov-file#clj-kondo-configuration"
                                                   :plugin-name    "com.github.clj-kondo/lein-clj-kondo"
                                                   :plugin-version "2024.08.29"}
-                                                 {:plugin-name    "lein-cljsbuild"
+                                                 {:plugin-name    "lein-cljsbuild/lein-cljsbuild"
                                                   :plugin-version "1.1.8"
                                                   :disabled       true
                                                   :reason         "cljsbuild is only required for ClojureScript and cross-platform projects."}

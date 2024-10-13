@@ -6,18 +6,13 @@
             [clojure.spec.alpha :as spec]
             [clojure.string :as str]
             [leiningen.core.main :as main]
-            [spec-tools.core :as st]))
-
-
-
+            [spec-tools.core :as st])
+  (:import (java.io File)))
 
 
 (def create-file
   "Create a file with all of its parent directories."
   (comp io/make-parents io/file))
-
-
-
 
 
 (defn file-exists?
@@ -27,17 +22,11 @@
        (.exists (io/file path))))
 
 
-
-
-
 (defn write-file!
   "This is a wrapper around `spit` that logs the filename to the console."
   [filename content]
   (main/info (format "Writing to %s" filename))
   (spit filename content))
-
-
-
 
 
 (defn write-edn-file!
@@ -48,17 +37,11 @@
     (write-file! filename content)))
 
 
-
-
-
 (defn read-file!
   "This is a wrapper around `slurp` that logs the filename to the console."
   [filename]
   (main/info (format "Reading from %s" filename))
   (slurp filename))
-
-
-
 
 
 (defn read-edn-file!
@@ -76,21 +59,25 @@
     (throw (ex-info "Not matching file exists!"
                     {:filename filename}))))
 
+
 (defn list-files-under-path
   "List all files under a given path."
   [path]
   (file-seq (io/file path)))
 
+
 (defn ->clojure-source-files
   "Filter `files` for only .clj, .cljs, .cljc files."
   [files]
-  (letfn [(clojure-source-file? [file]
+  (letfn [(clojure-source-file?
+            [file]
             (or (str/ends-with? (.getAbsolutePath file) ".clj")
                 (str/ends-with? (.getAbsolutePath file) ".cljs")
                 (str/ends-with? (.getAbsolutePath file) ".cljc")))]
     (filter clojure-source-file? files)))
 
+
 (defn file->path
   "Convert a file to a path."
-  [file]
+  [^File file]
   (.getAbsolutePath file))

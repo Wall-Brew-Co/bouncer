@@ -52,6 +52,7 @@
   (main/info "  - Validates the OSS license.")
   (main/info "  - Verifies the plugins required to run Wall Brew CI."))
 
+
 (defn fix-help
   "Display help text for the fix command"
   []

@@ -34,6 +34,7 @@
           (main/info "FAIL: Project does not conform to one or more rules.")
           (System/exit 1))))))
 
+
 (defn fix
   "Automatically fix common issues and style violations."
   [project _options]

@@ -2,12 +2,13 @@
   (:require [clojure.test :refer :all]
             [leiningen.bouncer.fixes.namespace-sorting :as sut]))
 
+
 (deftest format-ns-test
   (is (= (sut/format-ns '(ns
-                              leiningen.bouncer.fixes.namespace-sorting
-                               (:require [clojure.java.io :as io]
-                                         [clojure.string :as string])
-                               (:import (java.io File))))
+                           leiningen.bouncer.fixes.namespace-sorting
+                           (:require [clojure.java.io :as io]
+                                     [clojure.string :as string])
+                           (:import (java.io File))))
          "(ns leiningen.bouncer.fixes.namespace-sorting
   (:require [clojure.java.io :as io]
             [clojure.string :as string])
@@ -28,6 +29,7 @@
            [ring.swagger.json-schema :refer [describe]]
            [ring.util.http-response :refer [content-type ok]]
            [schema.core :as s]])))
+
 
 (deftest update-ns-test
   (is (= (sut/update-ns "(ns my-server
@@ -50,6 +52,7 @@
   (let [ns-with-hints "(ns ^:dev/once flow-constructor.app\n  (:require [flow-constructor.core :as core]\n            [cljs.spec.alpha :as s]\n            [expound.alpha :as expound]\n            [devtools.core :as devtools]))"
         ns-sorted     "(ns ^:dev/once flow-constructor.app\n  (:require [cljs.spec.alpha :as s]\n            [devtools.core :as devtools]\n            [expound.alpha :as expound]\n            [flow-constructor.core :as core]))"]
     (is (= (sut/update-ns ns-with-hints) ns-sorted))))
+
 
 (deftest update-code-test
   (testing "update-code should sort the namespace block and leave the rest of the code untouched."

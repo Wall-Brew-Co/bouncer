@@ -6,6 +6,7 @@
             [leiningen.core.main :as main])
   (:import (java.io File)))
 
+
 (defn format-ns
   "Format ns block into a writable string."
   [data]
@@ -39,6 +40,7 @@
     (.append sb ")")
     (.toString sb)))
 
+
 (defn sort-fn
   "Convert a `:require` entry into a string for sorting."
   [form]
@@ -46,11 +48,13 @@
     (-> form first str)
     (str form)))
 
+
 (defn sort-requires
   "Sort the namespace `:requires` list.
    Unlike, the ns-sort leiningen plugin, no priority is given to project namespaces."
   [requires]
   (distinct (sort-by sort-fn requires)))
+
 
 (defn make-replacement-table
   "Sometimes there can be some hints in the namespace definition.
@@ -73,6 +77,7 @@
                    (into {}))]
     table))
 
+
 (defn replace-with-table
   "Apply replacement table to string"
   [^String require-string table]
@@ -80,6 +85,7 @@
             [original-string [pattern replacement]]
             (str/replace original-string pattern replacement))]
     (reduce replace-string require-string table)))
+
 
 (defn update-ns
   "Parse ns string block and update ns block."
@@ -92,35 +98,37 @@
         requires-sorted (concat [:require]
                                 (sort-requires (rest requires)))
         sorted-data     (map
-                         (fn [item]
-                           (if (and (sequential? item)
-                                    (= :require (first item)))
-                             requires-sorted
-                             item))
-                         data)]
+                          (fn [item]
+                            (if (and (sequential? item)
+                                     (= :require (first item)))
+                              requires-sorted
+                              item))
+                          data)]
 
     ;; if the order is the same, keep old code format
     (if-not (= data sorted-data)
       (replace-with-table (format-ns sorted-data) replace-table)
       ns-block-as-string)))
 
+
 (defn update-code
   "Read the code string and update the namespace declaration to sort the required namespaces."
   [^String code]
   (let [ns-start (.indexOf code "(ns")
-        ns-end   (loop [start ns-start cnt 0]
+        ns-end   (loop [start ns-start position 0]
                    (cond
-                     (= \( (.charAt code start)) (recur (inc start) (inc cnt))
-                     (= \) (.charAt code start)) (if (zero? (dec cnt))
+                     (= \( (.charAt code start)) (recur (inc start) (inc position))
+                     (= \) (.charAt code start)) (if (zero? (dec position))
                                                    (inc start)
-                                                   (recur (inc start) (dec cnt)))
-                     :else (recur (inc start) cnt)))
+                                                   (recur (inc start) (dec position)))
+                     :else (recur (inc start) position)))
         ns-data  (subs code ns-start ns-end)
         prefix   (subs code 0 ns-start)
         postfix  (subs code ns-end)]
     (if (str/includes? ns-data ";")
       code
       (str prefix (update-ns ns-data) postfix))))
+
 
 (defn sort-file
   "Read, update and write to file"
@@ -132,12 +140,14 @@
     (catch Exception e
       (main/warn (format "Cannot update file: %s" (io/file->path file)) e))))
 
+
 (defn sort-path
   "Filter for only .clj, .cljs, .cljc files"
   [path]
   (let [clojure-files (io/->clojure-source-files (io/list-files-under-path path))]
     (doseq [file clojure-files]
       (sort-file file))))
+
 
 (defn fix!*
   "Fix the sorting of namespace `:require` blocks."
@@ -150,6 +160,7 @@
                                  (:test-paths project))]
           (doseq [path code-paths]
             (sort-path path))))))
+
 
 (defmethod api/fix! :namespace-sorting
   [project _rule-key rule]

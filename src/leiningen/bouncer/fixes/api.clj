@@ -2,6 +2,7 @@
   "The API for bouncer fixes"
   (:require [leiningen.core.main :as main]))
 
+
 (defmulti fix!
   "Fix the project according to the rule.
    If the rule is unknown, a warning is printed.
@@ -15,6 +16,7 @@
 (defmethod fix! :default
   [_project rule-key _rule]
   (main/info (format "WARN: Unknown fix: %s" rule-key)))
+
 
 (defn fix-all!
   "Perform all fixes against the project."
