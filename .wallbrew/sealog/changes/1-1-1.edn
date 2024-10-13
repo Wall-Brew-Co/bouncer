@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 1
+                :patch 1}
+ :version-type :semver3
+ :changes      {:added      []
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      ["Bouncer now merges user configuration with the default configuration."]
+                :security   []}
+ :timestamp    "2024-10-13T20:54:30.041307398Z"}
