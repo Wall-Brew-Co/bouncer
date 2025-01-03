@@ -51,4 +51,3 @@
 (defmethod api/check :plugins
   [project _rule-key rule]
   (check* project rule))
-

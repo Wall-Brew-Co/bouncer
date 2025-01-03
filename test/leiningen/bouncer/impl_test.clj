@@ -38,4 +38,3 @@
     (with-redefs [io/file-exists? (constantly false)]
       (is (map? (sut/load-config! {})))
       (is (spoon.spec/test-valid? ::config/config (sut/load-config! {}))))))
-
