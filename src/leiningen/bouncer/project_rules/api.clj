@@ -32,4 +32,3 @@
   [message]
   (main/info (format "FAIL: %s" message))
   false)
-
