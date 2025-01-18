@@ -70,7 +70,7 @@
   "Filter `files` for only .clj, .cljs, .cljc files."
   [files]
   (letfn [(clojure-source-file?
-            [file]
+            [^File file]
             (or (str/ends-with? (.getAbsolutePath file) ".clj")
                 (str/ends-with? (.getAbsolutePath file) ".cljs")
                 (str/ends-with? (.getAbsolutePath file) ".cljc")))]
