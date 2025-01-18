@@ -4,7 +4,7 @@
   <groupId>com.wallbrew</groupId>
   <artifactId>bouncer</artifactId>
   <packaging>jar</packaging>
-  <version>1.1.1</version>
+  <version>1.2.0</version>
   <name>bouncer</name>
   <description>A Leiningen plugin to manage Leiningen.</description>
   <url>https://github.com/Wall-Brew-Co/bouncer</url>
@@ -20,7 +20,7 @@
     <url>https://github.com/Wall-Brew-Co/bouncer</url>
     <connection>scm:git:git://github.com/Wall-Brew-Co/bouncer.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Wall-Brew-Co/bouncer.git</developerConnection>
-    <tag>442814909c24b0ba68d953af23e196d03ac75713</tag>
+    <tag>7d07ce58ba90b95e1db7bc082b23def267981cf7</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>

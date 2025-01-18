@@ -6,9 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [1.2.0 - 2025-01-18](#120---2025-01-18)
 * [1.1.1 - 2024-10-13](#111---2024-10-13)
 * [1.1.0 - 2024-10-13](#110---2024-10-13)
 * [1.0.0 - 2024-09-20](#100---2024-09-20)
+
+## 1.2.0 - 2025-01-18
+
+* Fixed
+  * Enabled `*warn-on-reflections*` globally.
+  * Fixed outstanding reflection.
 
 ## 1.1.1 - 2024-10-13
 

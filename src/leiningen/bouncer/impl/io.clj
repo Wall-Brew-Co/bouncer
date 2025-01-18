@@ -56,7 +56,7 @@
         (throw (ex-info (str "Invalid file contents: " filename)
                         {:filename filename
                          :errors   (spec/explain-data spec contents)}))))
-    (throw (ex-info "Not matching file exists!"
+    (throw (ex-info "No matching file exists!"
                     {:filename filename}))))
 
 
@@ -70,7 +70,7 @@
   "Filter `files` for only .clj, .cljs, .cljc files."
   [files]
   (letfn [(clojure-source-file?
-            [file]
+            [^File file]
             (or (str/ends-with? (.getAbsolutePath file) ".clj")
                 (str/ends-with? (.getAbsolutePath file) ".cljs")
                 (str/ends-with? (.getAbsolutePath file) ".cljc")))]
