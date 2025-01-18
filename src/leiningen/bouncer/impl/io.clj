@@ -56,7 +56,7 @@
         (throw (ex-info (str "Invalid file contents: " filename)
                         {:filename filename
                          :errors   (spec/explain-data spec contents)}))))
-    (throw (ex-info "Not matching file exists!"
+    (throw (ex-info "No matching file exists!"
                     {:filename filename}))))
 
 
