@@ -11,7 +11,7 @@
                  [metosin/spec-tools "0.10.7"]]
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2025.01.16"]
             [com.wallbrew/lein-sealog "1.9.0"]
-            [com.wallbrew/bouncer "1.1.1"]
+            [com.wallbrew/bouncer "1.2.0"]
             [mvxcvi/cljstyle "0.17.642"]]
   :pom-addition [:organization
                  [:name "Wall Brew Co."]
