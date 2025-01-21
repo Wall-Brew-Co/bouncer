@@ -10,7 +10,7 @@
   :dependencies [[org.clojure/clojure "1.12.0"]
                  [metosin/spec-tools "0.10.7"]]
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2025.01.16"]
-            [com.wallbrew/lein-sealog "1.8.0"]
+            [com.wallbrew/lein-sealog "1.9.0"]
             [com.wallbrew/bouncer "1.1.1"]
             [mvxcvi/cljstyle "0.17.642"]]
   :pom-addition [:organization
