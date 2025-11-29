@@ -16,7 +16,7 @@
   :pom-addition [:organization
                  [:name "Wall Brew Co."]
                  [:url "https://wallbrew.com"]]
-  :profiles {:dev {:dependencies [[org.clojure/test.check "1.1.1"]]}}
+  :profiles {:dev {:dependencies [[org.clojure/test.check "1.1.2"]]}}
   :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
                                     :username      :env/clojars_user
                                     :password      :env/clojars_pass
