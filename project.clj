@@ -9,7 +9,7 @@
         :url  "https://github.com/Wall-Brew-Co/bouncer"}
   :dependencies [[org.clojure/clojure "1.12.4"]
                  [metosin/spec-tools "0.10.8"]]
-  :plugins [[com.github.clj-kondo/lein-clj-kondo "2025.12.23"]
+  :plugins [[com.github.clj-kondo/lein-clj-kondo "2026.01.19"]
             [com.wallbrew/lein-sealog "1.9.0"]
             [com.wallbrew/bouncer "1.2.0"]
             [mvxcvi/cljstyle "0.17.642"]]
