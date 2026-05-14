@@ -7,7 +7,7 @@
             :comments     "Same-as all Wall-Brew projects"}
   :scm {:name "git"
         :url  "https://github.com/Wall-Brew-Co/bouncer"}
-  :dependencies [[org.clojure/clojure "1.12.4"]
+  :dependencies [[org.clojure/clojure "1.12.5"]
                  [metosin/spec-tools "0.10.8"]]
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2026.04.15"]
             [com.wallbrew/lein-sealog "1.9.0"]
